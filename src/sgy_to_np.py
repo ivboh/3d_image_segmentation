@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from obspy.io.segy.segy import _read_segy
 import bruges
 import csv
+from scipy import misc
 
 stream = _read_segy('../data/SEG_C3NA_Velocity.sgy', headonly=True)
 # one_trace = stream.traces[0]
@@ -12,7 +13,7 @@ stream = _read_segy('../data/SEG_C3NA_Velocity.sgy', headonly=True)
 #plt.plot(one_trace.data)
 #plt.show()
 
-data = np.stack(t.data for t in stream.traces)
+full_data = np.stack(t.data for t in stream.traces)
 #print(data.shape)
 
 #vm = np.percentile(data, 99)
@@ -27,7 +28,7 @@ data = np.stack(t.data for t in stream.traces)
 
 
 shape_3d = (676, 676, 201)
-full_data = data.reshape(676,676,201)
+full_data = full_data.reshape(676*676*201,)
 #training_data = full_data[:,0:350 :,:]
 
 
@@ -42,11 +43,10 @@ def get_mask(point_velocity):
     else:
         return 0
 
-vfunc = np.vectorize(get_mask)
-#mask_data = vfunc(training_chunck.reshape(a*b*c,)).reshape(a,b,c)
-mask_data = vfunc(full_data.reshape(676*676*201,))
-for i in range(676):    
-    np.savetxt(f"../data/msk_{i:03}.csv", mask_data.reshape(676,676,201)[i,:,:], delimiter = ",", fmt='%d')
+# vfunc = np.vectorize(get_mask)
+# mask_data = vfunc(full_data).reshape(676,676,201)
+# for i in range(676):    
+#     np.savetxt(f"../data/msk_{i:03}.csv", mask_data[i,:,:], delimiter = ",", fmt='%d')
 
 #plt.imshow(mask_data[0,:].T, cmap="viridis", vmin=0, vmax=1, aspect='auto')
 #plt.show()
@@ -87,15 +87,15 @@ rc = np.apply_along_axis(get_reflectivity, 1, full_data.reshape(676*676,201))
 # plt.show()
 
 
-w= bruges.filters.ricker(duration = 0.100, dt=0.001, f=40)
+w= bruges.filters.ricker(duration = 0.100, dt=0.001, f=120)
 
 rc_f = np.apply_along_axis(lambda t:np.convolve(t, w, mode='same'),
                             axis=1,
                             arr=rc)
 
 
-# for i in range(676):    
-#     np.savetxt(f"../data/img_{i:03}.csv", rc_f.reshape(676,676,201)[i,:,:], delimiter = ",", fmt='%d')
+for i in range(676):    
+    np.savetxt(f"../data/img_{i:03}.csv", rc_f.reshape(676,676,201)[i,:,:], delimiter = ",", fmt='%.2f')
 
 
 
@@ -128,7 +128,5 @@ plt.show()
 #                             arr=rc)
 #     np.savetxt(outfile, [rc_f.reshape(a*b*c,)], delimiter=',', fmt='%f')
 #     outfile.close()
-
-
 
 

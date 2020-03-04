@@ -2,7 +2,7 @@
 
 __Abstract:__
 
-This project utilized a neural network to do a 3d segmentation of sub-earth geological images. Areas of salt bodies are identified from background  
+This project utilized a neural network to do a 3D segmentation of sub-earth geological images. The goal of image segmentation is to partition input digital image to meaningful segments. The geological 3D image shows salt rocks surrounded by non salt rocks (sediments). The image of sediment rocks are characterized by layers of formation and the image of salt rocks are characterized by irregular shapes and strong reflection on the exterior boundaries. The neural net is trained to identify salt bodies from background rocks. The segmentation was tested in both 2D and 3D. 
 
 __Conclusion:__
 

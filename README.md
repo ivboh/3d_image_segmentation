@@ -2,11 +2,11 @@
 
 __Abstract:__
 
-This project utilized a neural network to do a 3D segmentation of sub-earth geological images. The goal of image segmentation is to partition input digital image to meaningful segments. The geological 3D image shows salt rocks surrounded by non salt rocks (sediments). The image of sediment rocks are characterized by layers of formation and the image of salt rocks are characterized by irregular shapes and strong reflection on the exterior boundaries. The neural net is trained to identify salt bodies from background rocks. The segmentation was tested in both 2D and 3D. 
+This project utilized a neural network to do a 3D segmentation of sub-earth geological images. The goal of image segmentation is to partition input digital image to meaningful segments. The geological 3D image shows salt rocks surrounded by non salt rocks often referred as sediments. The image of sediment are characterized by rock formation in layers and the image of salt rocks are characterized by irregular shapes and strong reflection on the exterior boundaries. The neural net is trained to identify salt bodies from surrounding background rocks. Both 2D and 3D convolutional neural networks are trained and tested. 
 
 __Conclusion:__
 
-Using 3D and 2D segmentation obtain similar accuracy. 
+UNet is effective handling the .In terms of accuracy and loss, 3D and 2D segmentation have similar performace. 2D model obtains a validation accuracy of 0.9809 and a validation loss of 0.0034 after 50 training epochs. 3D model obtains a validation accuracy of 0.9867 and a validation loss of 0.0054. One possible explanation is the data set has simple geological structure comparing to real data to distinguish 2D and 3D segmentation. 
 
 ---
 # Intruduction: background and motivation 
@@ -15,7 +15,7 @@ For oil and gas exploration, trained geologists mannually annotate volume of geo
 
 
 # Result
-3D segmentation performaed well 
+3D segmentation perform
 
 
 # Analysis flow and code

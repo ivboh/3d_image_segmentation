@@ -24,8 +24,9 @@ Hospital rely on radiologists to mannual annotate medical images. With the rapid
 
 
 # Analysis flow and code
-
-
+1. Convert the input SEGY format file into numpy and write as csv files by running ```python src/sgy_to_np.py```
+2. Train the 2D model by running ```python src/2d-segmentation-32x32.py```
+3. Train the 3D model by running ```python src/3d-segmentation-32x32x32.py```
 
 # Data source and tools
 

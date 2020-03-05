@@ -6,16 +6,15 @@ This project utilized a neural network to do a 3D segmentation of sub-earth geol
 
 __Conclusion:__
 
-UNet is highly effective in this synthetic geological image segmentation. 3D and 2D segmentation have similar performace. 2D model obtains a validation accuracy of 0.9809 and a validation loss of 0.0034 after 50 training epochs. 3D model obtains a validation accuracy of 0.9867 and a validation loss of 0.0054. One possible explanation is the data set has simple geological structure comparing to real data to distinguish 2D and 3D segmentation. 
+UNet is highly effective in this synthetic geological image segmentation.  One possible explanation is the data set has simple geological structure comparing to distinguish 2D and 3D segmentation. 
 
 ---
 # Intruduction: background and motivation 
-Trained geologists are hired to mannually annotate volume of geological images in 2D and 3D. With the rapid progress made in object recognition, detection and segmentation of computer vision, hospitals can rely more on machine learning models to interpret medical images like brain MRI. 
-
+Hospital rely on radiologists to mannual annotate medical images. With the rapid progress made in image recognition, object detection and segmentation int the field of computer vision, they can now rely more on AI and machine learning models to take some labor intensive work. Similarly in energy sector, trained geologists mannually annotate volume of geological images in 2D and 3D. A good understanding of the sub earth geology is required before drilling to maximize the prospect and minimize the drilling hazards. It requires high accuracy for identifying different geobodies underneath the earth surface. 
 
 
 # Result
-3D segmentation perform
+3D and 2D segmentation have similar performace. 2D model obtains a validation accuracy of 0.9809 and a validation loss of 0.0034 after 50 training epochs. 3D model obtains a validation accuracy of 0.9867 and a validation loss of 0.0054.
 
 
 # Analysis flow and code

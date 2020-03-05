@@ -1,3 +1,4 @@
+<Img src=https://github.com/ivboh/3d_image_segmentation/blob/master/image/predicted_mask.gif>
 # 3d Image Segmentation
 
 __Abstract:__

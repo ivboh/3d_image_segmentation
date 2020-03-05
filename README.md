@@ -1,5 +1,7 @@
 <Img src=https://github.com/ivboh/3d_image_segmentation/blob/master/image/predicted_mask.gif>
-               Image             True Mask             Predicted Mask (epoch 5)              Predicted Mask (epoch 50) 
+<pre>
+            Image             True Mask             Predicted Mask (epoch 5)              Predicted Mask (epoch 50)
+</pre>
   
 # 3d Image Segmentation
 

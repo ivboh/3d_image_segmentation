@@ -44,9 +44,9 @@ xl = 676
 il = 676
 n_samples = 201
 
+#Generate sythetic image from velocity model
 stream = _read_segy('../data/SEG_C3NA_Velocity.sgy', headonly=True)
 full_data = np.stack(t.data for t in stream.traces).reshape(xl*il*n_samples,)
-
 rc = np.apply_along_axis(get_reflectivity, 1, full_data.reshape(676*676,201))
 w= bruges.filters.ricker(duration = 0.100, dt=0.001, f=120)
 rc_f = np.apply_along_axis(lambda t:np.convolve(t, w, mode='same'),
@@ -55,6 +55,23 @@ rc_f = np.apply_along_axis(lambda t:np.convolve(t, w, mode='same'),
 
 for i in range(676):    
     np.savetxt(f"../data/img_{i:03}.csv", rc_f.reshape(676,676,201)[i,:,:], delimiter = ",", fmt='%.2f')
+    
+    
+
+#Genereate mask from velocity model
+stream = _read_segy('../data/SEG_C3NA_Velocity.sgy', headonly=True)
+full_data = np.stack(t.data for t in stream.traces).reshape(xl*il*n_samples, 1)
+mask = np.apply_along_axis(get_mask, 1, full_data)
+for i in range(676):    
+    np.savetxt(f"../data/msk_{i:03}.csv", mask.reshape(676,676,201)[i,:,:], delimiter = ",", fmt='%.2f')
+
+
+    
+#Save velocity model as csv files
+stream = _read_segy('../data/SEG_C3NA_Velocity.sgy', headonly=True)
+full_data = np.stack(t.data for t in stream.traces).reshape(xl*il*n_samples,)
+for i in range(676):    
+    np.savetxt(f"../data/vel_{i:03}.csv", full_data.reshape(676,676,201)[i,:,:], delimiter = ",", fmt='%.2f')
 
 
 
